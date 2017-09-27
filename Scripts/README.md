@@ -6,5 +6,8 @@
 
 ## Dependences
 
-```pip install python-json```
-```pip install python-requests```
+- ```$ sudo apt install pip```
+
+- ```$ pip install python-json```
+
+- ```$ pip install python-requests```
