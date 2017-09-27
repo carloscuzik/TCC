@@ -2,9 +2,9 @@
 
 ## Run
 
-´´´$ python3 request_trajectory_data_from_waze.py´´´
+```$ python3 request_trajectory_data_from_waze.py```
 
 ## Dependences
 
-´´´pip install python-json´´´
-´´´pip install python-requests´´´
+```pip install python-json```
+```pip install python-requests```
