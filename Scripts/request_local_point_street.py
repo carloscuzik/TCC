@@ -1,8 +1,9 @@
-import json, requests
+import json, xmltodict, requests
 
 locals_address = {}
 locals_address.update({'RockFeller'     : 'ChIJkdEaSj-w3pQRUhf00nVYu5g'})
 locals_address.update({'Magrathea_Labs' : 'ChIJG6B5DC6w3pQRHM-7HtOV7lU'})
+locals_address.update({'Udesc-CCT' : 'ChIJ6SrUgKSv3pQR4RK0Imh29q8'})
 
 my_key = {}
 my_key.update({'directions'     : 'AIzaSyDNFfzulwTdNST376L6sCPaMtvCBYNPbR0'})
@@ -25,16 +26,17 @@ def rote_info(origin, destination,mode_go,api_mode,return_format):
 											+ "origin=place_id:" + locals_address[origin]
 											+ "&destination=place_id:" + locals_address[destination]
 											+ "&mode=" + mode[mode_go]
+											+ "&departure_time:" + "now"
 											+ "&key=" + my_key[api_mode])
-	
+
 	content = requests.get(require_url).content
-	json_content = json.loads(content)
-
-	json_routs = json_content['routes'][0]
-
-	json_legs = json_routs['legs'][0]
 	
-	for step in json_legs['steps']:
-		print str(float(step['distance']['value']) / float(step['duration']['value'])) + ':' + step['html_instructions']
+	if(return_format=='json'):
+		steps = ((json.loads(content)['routes'][0])['legs'][0])['steps']
+	else:
+		steps = json.loads(json.dumps(xmltodict.parse(content)))['DirectionsResponse']['route']['leg']['step']
+	
+	for step in steps:
+		print str(float(step['distance']['value']) / float(step['duration']['value']))
 
-print rote_info('RockFeller','Magrathea_Labs','car','directions','json')
+rote_info('Udesc-CCT','Magrathea_Labs','car','directions','xml')
