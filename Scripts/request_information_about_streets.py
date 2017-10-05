@@ -17,7 +17,8 @@ def street_info(street_name, city_name,my_local_id):
 	if type(json_content['result']) == dict:
 		json_results = json_content['result']
 	else:
-		json_results = json_content['result'][0]
+		return {'many results'}
+		# json_results = json_content['result'][0]
 
 	util_street_info.update({'my_local_id':my_local_id})
 	util_street_info.update({'google_id':json_results['id']})
