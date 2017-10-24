@@ -12,8 +12,8 @@ def rote_info(origin, destination):
 	json_content = json.loads(content)
 	if(len(json_content['routes']) == 0):
 		print 'retry'
-		return rote_info(origin, destination)
 		# return "{'status':error,'place_id':" + origin + "}\n"
+		# return rote_info(origin, destination)
 	json_routs = json_content['routes'][0]
 	json_legs = json_routs['legs'][0]
 	steps = json_legs['steps']
